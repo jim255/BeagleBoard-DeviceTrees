@@ -1030,7 +1030,12 @@
 	#address-cells = <1>;
 	#size-cells = <0>;
 	status = "okay";
-	clock-frequency = <400000>;
+	clock-frequency = <100000>;
+
+	tpm@29 {
+		compatible = "atmel,at97sc3204t";
+		reg = <0x29>;
+	};
 };
 
 /include/ "tps65217.dtsi"
