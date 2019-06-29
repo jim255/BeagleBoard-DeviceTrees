@@ -41,9 +41,10 @@
 			wl18xx_pins: pinmux_wl18xx_pins {
 				pinctrl-single,pins = <
 					AM33XX_IOPAD(0x878, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* gpmc_ad12.gpio1_28 BT_EN */
+					AM33XX_IOPAD(0x924, PIN_OUTPUT_PULLUP | MUX_MODE7)	 					
 				>;
 			};
-
+			
 			mmc3_pins: pinmux_mmc3_pins {
 				pinctrl-single,pins = <
 					AM33XX_IOPAD(0x830, PIN_INPUT_PULLUP | MUX_MODE3)	/* gpmc_ad12.mmc2_dat0 */
@@ -65,6 +66,25 @@
 					AM33XX_IOPAD(0x88c, PIN_INPUT_PULLDOWN | MUX_MODE3)	/* gpmc_clk.mmc2_clk */
 				>;
 			};
+			
+
+			uart2_pins_default: pinmux_uart2_pins_default {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x90C, PIN_INPUT_PULLUP | MUX_MODE6)	
+					AM33XX_IOPAD(0x910, PIN_OUTPUT_PULLDOWN | MUX_MODE6)	
+					AM33XX_IOPAD(0x8C0, PIN_INPUT | MUX_MODE6)		
+					AM33XX_IOPAD(0x8C4, PIN_OUTPUT_PULLDOWN | MUX_MODE6)	
+				>;
+			};
+
+			uart2_pins_sleep: pinmux_uart2_pins_sleep {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x90C, PIN_INPUT_PULLDOWN | MUX_MODE7)	
+					AM33XX_IOPAD(0x910, PIN_INPUT_PULLDOWN | MUX_MODE7)	
+					AM33XX_IOPAD(0x8C0, PIN_INPUT_PULLDOWN | MUX_MODE7)	
+					AM33XX_IOPAD(0x8C4, PIN_INPUT_PULLDOWN | MUX_MODE7)	
+				>;
+			};
 
 			/* wl18xx card enable/irq GPIOs. */
 			wlan_pins: pinmux_wlan_pins {
@@ -81,7 +101,7 @@
 					AM33XX_IOPAD(0x82C, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* gpmc_ad11.gpio0_27 WL_IRQ */
 				>;
 			};
-
+			#if 0
 			uart3_pins_default: pinmux_uart3_pins_default {
 				pinctrl-single,pins = <
 					AM33XX_IOPAD(0x934, PIN_INPUT_PULLUP | MUX_MODE1)	/* gmii1_rxd3.uart3_rxd */
@@ -99,6 +119,7 @@
 					AM33XX_IOPAD(0x94c, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (M18) mdio_clk.uart3_rtsn */
 				>;
 			};
+			#endif
 		};
 	};
 
@@ -129,6 +150,11 @@
 					label = "wl18xx_bt_en";
 					gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
 					default-state = "off";
+				};
+				LAN9512_Reset_on {
+					label = "AN9512_Reset";
+					gpios = <&gpio0 21 GPIO_ACTIVE_HIGH>;
+					default-state = "on";
 				};
 			};
 		};
@@ -170,11 +196,11 @@
 	};
 
 	fragment@5 {
-		target = <&uart3>;
+		target = <&uart2>;
 		__overlay__ {
 			pinctrl-names = "default", "sleep";
-			pinctrl-0 = <&uart3_pins_default>;
-			pinctrl-1 = <&uart3_pins_sleep>;
+			pinctrl-0 = <&uart2_pins_default>;
+			pinctrl-1 = <&uart2_pins_sleep>;
 			status = "okay";
 		};
 	};
