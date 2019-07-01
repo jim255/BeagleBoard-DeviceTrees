@@ -105,6 +105,24 @@
 					AM33XX_IOPAD(0x944, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* rmii1_refclk.gpio0_29 WL_IRQ */
 				>;
 			};
+			
+			uart3_pins_default: pinmux_uart3_pins_default {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x934, PIN_INPUT_PULLUP | MUX_MODE1)	/* gmii1_rxd3.uart3_rxd */
+					AM33XX_IOPAD(0x938, PIN_OUTPUT_PULLDOWN | MUX_MODE1)	/* gmii1_rxd2.uart3_txd */
+					AM33XX_IOPAD(0x948, PIN_INPUT | MUX_MODE3)		/* mdio_data.uart3_ctsn */
+					AM33XX_IOPAD(0x94c, PIN_OUTPUT_PULLDOWN | MUX_MODE3)	/* mdio_clk.uart3_rtsn */
+				>;
+			};
+
+			uart3_pins_sleep: pinmux_uart3_pins_sleep {
+				pinctrl-single,pins = <
+					AM33XX_IOPAD(0x934, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (L17) gmii1_rxd3.uart3_rxd */
+					AM33XX_IOPAD(0x938, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (L16) gmii1_rxd2.uart3_txd */
+					AM33XX_IOPAD(0x948, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (M17) mdio_data.uart3_ctsn */
+					AM33XX_IOPAD(0x94c, PIN_INPUT_PULLDOWN | MUX_MODE7)	/* (M18) mdio_clk.uart3_rtsn */
+				>;
+			};
 
 			uart2_pins_default: pinmux_uart2_pins_default {
 				pinctrl-single,pins = <
@@ -172,6 +190,16 @@
 	};
 
 	fragment@5 {
+		target = <&uart3>;
+		__overlay__ {
+			pinctrl-names = "default", "sleep";
+			pinctrl-0 = <&uart3_pins_default>;
+			pinctrl-1 = <&uart3_pins_sleep>;
+			status = "okay";
+		};
+	};
+	
+	fragment@6 {
 		target = <&gpio3>;
 		__overlay__ {
 			ls_buf_en {
@@ -183,14 +211,14 @@
 		};
 	};
 	
-	fragment@6 {
+	fragment@7 {
 		target = <0xd0>;
 		__overlay__ {
 			status = "disabled";
 		};
 
 	};
-	fragment@7 {
+	fragment@8 {
 		target = <0x47>;
 		__overlay__ {
 			status = "disabled";
