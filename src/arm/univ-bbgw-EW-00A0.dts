@@ -1857,6 +1857,7 @@
 
 			/* P8_37 (ZCZ ball U1) hdmi */
 			P8_37_pinmux {
+				/*
 				compatible = "bone-pinmux-helper";
 				status = "okay";
 				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "uart", "pwm";
@@ -1867,10 +1868,12 @@
 				pinctrl-4 = <&P8_37_gpio_input_pin>;
 				pinctrl-5 = <&P8_37_uart_pin>;
 				pinctrl-6 = <&P8_37_pwm_pin>;
+				*/
 			};
 
 			/* P8_38 (ZCZ ball U2) hdmi */
 			P8_38_pinmux {
+				/*
 				compatible = "bone-pinmux-helper";
 				status = "okay";
 				pinctrl-names = "default", "gpio", "gpio_pu", "gpio_pd", "gpio_input", "uart", "pwm";
@@ -1881,6 +1884,7 @@
 				pinctrl-4 = <&P8_38_gpio_input_pin>;
 				pinctrl-5 = <&P8_38_uart_pin>;
 				pinctrl-6 = <&P8_38_pwm_pin>;
+				*/
 			};
 
 			/* P8_39 (ZCZ ball T3) hdmi */
@@ -2956,7 +2960,7 @@
 			pinctrl-0 = <>;
 		};
 	};
-
+	/*
 	fragment@11 {
 		target = <&uart2>;
 		__overlay__ {
@@ -2965,7 +2969,7 @@
 			pinctrl-0 = <>;
 		};
 	};
-
+	*/
 	fragment@12 {
 		target = <&uart4>;
 		__overlay__ {
