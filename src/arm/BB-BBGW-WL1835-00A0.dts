@@ -48,6 +48,11 @@
 					gpios = <&gpio0 21 GPIO_ACTIVE_HIGH>;
 					default-state = "on";
 				};
+				wifi_active_led{
+					label = "wifi-active-led";
+					gpios = <&gpio2 21 GPIO_ACTIVE_HIGH>;
+					default-state = "on";
+				};
 			};
 		};
 	};
@@ -58,7 +63,8 @@
 			wl18xx_pins: pinmux_wl18xx_pins {
 				pinctrl-single,pins = <
 					AM33XX_IOPAD(0x928, PIN_OUTPUT_PULLUP | MUX_MODE7)	/* gmii1_txd0.gpio0_28 - BT_EN */
-                    AM33XX_IOPAD(0x924, PIN_OUTPUT_PULLUP | MUX_MODE7)	 
+					AM33XX_IOPAD(0x924, PIN_OUTPUT_PULLUP | MUX_MODE7)	 
+					AM33XX_IOPAD(0x940, PIN_OUTPUT_PULLUP | MUX_MODE7)	 
 				>;
 			};
 
@@ -210,7 +216,7 @@
 			};
 		};
 	};
-	
+	/*
 	fragment@7 {
 		target = <0xd0>;
 		__overlay__ {
@@ -224,6 +230,6 @@
 			status = "disabled";
 		};
 	};
-	
+	*/	
 };
 
