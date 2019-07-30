@@ -167,7 +167,8 @@
 		led4 {
 			label = "beaglebone:green:usr4";
 			gpios = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "phy0assoc";
+			linux,default-trigger = "netdev";
+			default-state = "off";
 		};
 	};
 
