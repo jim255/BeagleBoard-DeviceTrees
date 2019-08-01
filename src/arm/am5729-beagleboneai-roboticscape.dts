@@ -12,13 +12,14 @@
 		base_dtb = "am5729-beagleboneai-roboticscape.dts";
 		base_dtb_timestamp = __TIMESTAMP__;
 	};
+};
 
-	rc_leds: rc-leds {
-		compatible = "gpio-leds";
 
+&leds {
 		red_led {
 			label = "red";
 			gpios = <&gpio6 5 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "none";
 			default-state = "off";
 		};
 
@@ -51,8 +52,9 @@
 			gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 		};
-	};
+};
 
+/ {
 	rc_gpios: rc-gpios {
 		compatible = "gpio-of-helper";
 		status = "okay";
@@ -74,24 +76,6 @@
 			gpio = <&gpio8 2 0>;
 		};
 	};
-};
-
-&ocp {
-	pruss1_shmem: pruss_shmem@4b200000 {
-		status = "okay";
-		compatible = "ti,pruss-shmem";
-		reg = <0x4b200000 0x020000>;
-	};
-
-	pruss2_shmem: pruss_shmem@4b280000 {
-		status = "okay";
-		compatible = "ti,pruss-shmem";
-		reg = <0x4b280000 0x020000>;
-	};
-};
-
-&cape_pins {
-	status = "disabled";
 };
 
 &dra7_pmx_core {

@@ -133,7 +133,7 @@
 		regulator-boot-on;
 	};
 
-	leds {
+	leds: leds {
 		compatible = "gpio-leds";
 		pinctrl-names = "default";
 		pinctrl-0 = <&led_pins_default>;
@@ -1103,27 +1103,27 @@
 };
 
 &cpu_alert0 {
-	temperature = <80000>; /* milliCelsius */
+	temperature = <70000>; /* milliCelsius */
 };
 
 &cpu_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <85000>; /* milliCelsius */
 };
 
 &gpu_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <85000>; /* milliCelsius */
 };
 
 &core_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <85000>; /* milliCelsius */
 };
 
 &dspeve_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <85000>; /* milliCelsius */
 };
 
 &iva_crit {
-	temperature = <95000>; /* milliCelsius */
+	temperature = <85000>; /* milliCelsius */
 };
 
 &sata {
@@ -1134,6 +1134,36 @@
 	status = "disabled";
 };
 
+&eqep0 {
+	symlink = "bone/eqep/1";
+};
+
+&eqep1 {
+	symlink = "bone/eqep/2";
+};
+
+&eqep2 {
+	symlink = "bone/eqep/0";
+};
+
+&ocp {
+	pruss1_shmem: pruss_shmem@4b200000 {
+		status = "okay";
+		compatible = "ti,pruss-shmem";
+		reg = <0x4b200000 0x020000>;
+	};
+
+	pruss2_shmem: pruss_shmem@4b280000 {
+		status = "okay";
+		compatible = "ti,pruss-shmem";
+		reg = <0x4b280000 0x020000>;
+	};
+};
+
+&cape_pins {
+	status = "disabled";
+};
+
 /* bluetooth */
 &uart6 {
 	status = "okay";
@@ -1141,6 +1171,7 @@
 
 /* cape header stuff */
 &i2c4 {
+	symlink = "bone/i2c/2";
 	status = "okay";
 	clock-frequency = <400000>;
 };
