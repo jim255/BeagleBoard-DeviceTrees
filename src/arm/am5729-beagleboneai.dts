@@ -638,7 +638,8 @@
 					/* VDD_DSPEVE on AM572 */
 					regulator-name = "smps45";
 					regulator-min-microvolt = < 850000>;
-					regulator-max-microvolt = <1250000>;
+					regulator-max-microvolt = < 850000>;
+					//regulator-max-microvolt = <1250000>;
 					regulator-always-on;
 					regulator-boot-on;
 				};
@@ -647,7 +648,8 @@
 					/* VDD_GPU */
 					regulator-name = "smps6";
 					regulator-min-microvolt = < 850000>;
-					regulator-max-microvolt = <1250000>;
+					regulator-max-microvolt = < 850000>;
+					//regulator-max-microvolt = <1250000>;
 					regulator-always-on;
 					regulator-boot-on;
 				};
