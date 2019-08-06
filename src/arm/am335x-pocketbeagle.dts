@@ -64,6 +64,15 @@
 
 &ocp {
 	/************************/
+	/* PRU Shared Memory */
+	/************************/
+	pruss_shmem: pruss_shmem@4a300000 {
+		status = "okay";
+		compatible = "ti,pruss-shmem";
+		reg = <0x4a300000 0x020000>;
+	};
+
+	/************************/
 	/* P1 Header */
 	/************************/
 
